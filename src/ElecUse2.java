@@ -1,20 +1,54 @@
 
 import java.util.Scanner;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 
 public class ElecUse2
 {
 	public static void main (String[] args)
 	{
+		
+		JFrame frame = new JFrame("CPU Brand, Speed, Cores");
+	    frame.setVisible(true);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setSize(500, 500);
+	    frame.setLocation(430, 100);
+
+	    JPanel panel = new JPanel();
+
+	    frame.add(panel);
+
+	    JLabel lbl = new JLabel("Select your CPU Brand, Speed, and Number of Cores: ");
+	    lbl.setVisible(true);
+
+	    panel.add(lbl);
+	    
+	    String[] CPU = { "Brand:Intel, Speed:Low, Cores:2","Brand:Intel, Speed:Medium, Cores:4","Brand:Intel, Speed:High, Cores:6","Brand:Intel, Speed:Top End, Cores:8","Brand:AMD, Speed:Low, Cores:2","Brand:AMD, Speed:Medium, Cores:4","Brand:AMD, Speed:High, Cores:6" };
+		
+	    final JComboBox CPUlist = new JComboBox(CPU);
+
+	    CPUlist.setVisible(true);
+	    panel.add(CPUlist);
+
+	    JButton btn = new JButton("OK");
+	    panel.add(btn);
+	    
+	  
+		
 		//computer cost based on user input from question 1
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the cost of your candidate computer:");
 		int comCost = scan.nextInt();
 		
 		//desktop or laptop
-		String laptop="no";
+		String laptop="yes";
 		String desktop="no";
 		System.out.println("Is your computer a laptop or desktop?");
-		String dl = scan.nextLine();
+		String dl = scan.next();
 	
 		if (dl=="laptop")
 		{
@@ -27,7 +61,7 @@ public class ElecUse2
 		
 		//type of screen 
 		System.out.println("Enter the type of screen (LCD, CRT, or LED): ");
-		String screenType = scan.nextLine();
+		String screenType = scan.next();
 		
 		//size of screen electricity use
 		System.out.println("Enter the size of screen in inches (please enter an integer in the range 11-35): ");
@@ -100,11 +134,16 @@ public class ElecUse2
 		
 		//Ask for CPU speed, number of cores, CPU brand. Should we have them enter this all at once and store it in a list somehow??
 		System.out.println("Enter your computer's CPU Speed:");
-		String CPUspeed = scan.nextLine();
+		
+		
+		 
+	
+		String CPUspeed = scan.next();
 		System.out.println("Enter your computer's number of cores:");
 		int numberCores = scan.nextInt();
 		System.out.println("Enter your computer's CPU brand:");
-		String CPUbrand = scan.nextLine();
+		String CPUbrand = scan.next();
+
 		double SpeedCoreBrand = 0;
 				
 		if (CPUspeed=="low" && numberCores==2 && CPUbrand=="Intel") 
@@ -140,6 +179,7 @@ public class ElecUse2
 		//taking in how long the user will use the computer
 		System.out.println("How many years do you expect to keep your computer? (please enter an integer) ");
 		int years = scan.nextInt();
+		System.out.print(years);
 		int months = years*12;
 		
 		//should we say "how long do you use you computer everyday on average?"
@@ -148,8 +188,8 @@ public class ElecUse2
 		
 		//State
 		System.out.println("What state will you be using your computer in primarily?");
-		String state=scan.nextLine();
-		double stateCost = 5; //temporary assignment for tetsing 
+		String state=scan.next();
+		double stateCost = 5; //temporary assignment for testing 
 		
 		
 		//considering mouse battery
@@ -189,8 +229,9 @@ public class ElecUse2
 		}
 		if (laptop=="yes")
 		{
-			double tempBattery=((years-5)/5)*150;
-			cBattery=Math.ceil(tempBattery);
+			cBattery=Math.ceil((double)(years-5)/5*150); 
+			System.out.print(cBattery);
+			System.out.print("hi");
 		}
 		
 		 
@@ -221,5 +262,7 @@ public class ElecUse2
 
 		//What does this do?
 		//public int CpuSpeedCore(String CPUspeed, int numberCores, String CPUbrand)
+		
+		
 	
    
